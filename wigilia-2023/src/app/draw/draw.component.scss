@@ -1,0 +1,77 @@
+.main-content {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.draw-card {
+    max-width: 400px;
+
+    &-header-image {
+        background-image: url('https://scontent-waw1-1.xx.fbcdn.net/v/t39.30808-1/347384807_6394647897295892_6007875994994007536_n.jpg?stp=c93.0.320.320a_dst-jpg_p320x320&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=LmVcT3sKE2cAX_3gRhy&_nc_ht=scontent-waw1-1.xx&oh=00_AfC_qrUtenfmPsC0jVQMqbU-TpDOeFo2nGgIk2WfroIzkA&oe=6549526C');
+        background-size: cover;
+    }
+
+    &-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;        
+    }
+
+    &-button {
+        width: 150px;
+        height: 150px;
+        background-color: #49a072;
+    }
+
+    &-icon {
+        transform: scale(2);
+    }
+}
+
+.title {
+    text-align: center;
+    color: #fff;
+
+    &-header-1 {
+    font-family: "Alex Brush";
+    font-size: 5rem;
+    line-height: 0.8;
+    margin: 40px 0 15px 0;
+    font-weight: 400;
+    }
+
+    &-header-2 {
+        font-family: 'Roboto Condensed', sans-serif !important;
+        font-size: 5rem;
+        margin: -22px 20px 0;
+        font-weight: 400;
+        line-height: 1.1;
+    }
+
+    &-header-3 {
+        letter-spacing: 6px;
+        font-size: 3rem;
+        line-height: 0.8;
+        margin: 0 20px;
+        font-family: 'Roboto Condensed', sans-serif !important;
+        font-weight: 400;
+    }
+}
+
+.actions {
+    display: flex;
+    justify-content: center;    
+    margin-bottom: 40px;
+
+    &-button {
+        border: 2px solid #fff;
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+        padding: 25px 30px;
+        background: transparent;
+        color: #fff;
+        font-family: 'Open Sans', sans-serif;
+        width: 400px;
+    }
+}
