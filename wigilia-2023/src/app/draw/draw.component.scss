@@ -2,10 +2,12 @@
     display: flex;
     justify-content: center;
     margin: 40px 0;
+    z-index: 90;
+    position: relative;
 }
 
 .draw-card {
-    max-width: 400px;
+    width: 400px;
 
     &-header-image {
         background-image: url('https://scontent-waw1-1.xx.fbcdn.net/v/t39.30808-1/347384807_6394647897295892_6007875994994007536_n.jpg?stp=c93.0.320.320a_dst-jpg_p320x320&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=LmVcT3sKE2cAX_3gRhy&_nc_ht=scontent-waw1-1.xx&oh=00_AfC_qrUtenfmPsC0jVQMqbU-TpDOeFo2nGgIk2WfroIzkA&oe=6549526C');
@@ -22,10 +24,19 @@
         width: 150px;
         height: 150px;
         background-color: #49a072;
+
+        &--drawn {
+            overflow: hidden;
+            border-radius: 50%;
+        }
     }
 
     &-icon {
         transform: scale(2);
+    }
+
+    &-image {
+        width: 100%;        
     }
 }
 
@@ -63,7 +74,9 @@
     display: flex;
     justify-content: center;    
     margin-bottom: 40px;
-
+    z-index: 90;
+    position: relative;
+    
     &-button {
         border: 2px solid #fff;
         font-size: 1.1rem;
@@ -75,3 +88,130 @@
         width: 400px;
     }
 }
+
+
+  #coin {
+    position: relative;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+  }
+  #coin div {
+    width: 100%;
+    height: 100%;
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+            border-radius: 50%;
+    -webkit-box-shadow: inset 0 0 45px rgba(255,255,255,.3), 0 12px 20px -10px rgba(0,0,0,.4);
+       -moz-box-shadow: inset 0 0 45px rgba(255,255,255,.3), 0 12px 20px -10px rgba(0,0,0,.4);
+            box-shadow: inset 0 0 45px rgba(255,255,255,.3), 0 12px 20px -10px rgba(0,0,0,.4);
+  }
+  .side-a {
+    background-color: #bb0000;
+  }
+  .side-b {
+    background-color: #3e3e3e;
+  }
+  
+  #coin {
+    transition: -webkit-transform 1s ease-in;
+    -webkit-transform-style: preserve-3d;
+  }
+  #coin div {
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+  }
+  .side-a {
+    z-index: 100;
+  }
+  .side-b {
+    -webkit-transform: rotateY(-180deg);
+  
+  }
+  
+  #coin.heads {
+    -webkit-animation: flipHeads 3s ease-out forwards;
+    -moz-animation: flipHeads 3s ease-out forwards;
+      -o-animation: flipHeads 3s ease-out forwards;
+         animation: flipHeads 3s ease-out forwards;
+  }
+  #coin.tails {
+    -webkit-animation: flipTails 3s ease-out forwards;
+    -moz-animation: flipTails 3s ease-out forwards;
+      -o-animation: flipTails 3s ease-out forwards;
+         animation: flipTails 3s ease-out forwards;
+  }
+  
+  @keyframes flipHeads {
+    from { -webkit-transform: rotateY(0); -moz-transform: rotateY(0); transform: rotateY(0); }
+    to { -webkit-transform: rotateY(1800deg); -moz-transform: rotateY(1800deg); transform: rotateY(1800deg); }
+  }
+  @keyframes flipTails {
+    from { -webkit-transform: rotateY(0); -moz-transform: rotateY(0); transform: rotateY(0); }
+    to { -webkit-transform: rotateY(1980deg); -moz-transform: rotateY(1980deg); transform: rotateY(1980deg); }
+  }
+  
+  
+
+
+
+
+
+
+
+
+
+.snowflakes {position: absolute; width: 100%; height: 100%; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: 1;}
+
+
+//   body {
+//     height: 100vh;
+//     background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+//     overflow: hidden;
+//     filter: drop-shadow(0 0 10px white);
+//   }
+  
+  @function random_range($min, $max) {
+    $rand: random();
+    $random_range: $min + floor($rand * (($max - $min) + 1));
+    @return $random_range;
+  }
+  
+  .snow {
+    $total: 200;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+  
+    @for $i from 1 through $total {
+      $random-x: random(1000000) * 0.0001vw;
+      $random-offset: random_range(-100000, 100000) * 0.0001vw;
+      $random-x-end: $random-x + $random-offset;
+      $random-x-end-yoyo: $random-x + ($random-offset / 2);
+      $random-yoyo-time: random_range(30000, 80000) / 100000;
+      $random-yoyo-y: $random-yoyo-time * 100vh;
+      $random-scale: random(10000) * 0.0001;
+      $fall-duration: random_range(10, 30) * 1s;
+      $fall-delay: random(30) * -1s;
+  
+      &:nth-child(#{$i}) {
+        opacity: random(10000) * 0.0001;
+        transform: translate($random-x, -10px) scale($random-scale);
+        animation: fall-#{$i} $fall-duration $fall-delay linear infinite;
+      }
+  
+      @keyframes fall-#{$i} {
+        #{percentage($random-yoyo-time)} {
+          transform: translate($random-x-end, $random-yoyo-y) scale($random-scale);
+        }
+  
+        to {
+          transform: translate($random-x-end-yoyo, 100vh) scale($random-scale);
+        }
+      }
+    }
+  }
+  
