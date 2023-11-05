@@ -8,10 +8,18 @@
 
 .draw-card {
     width: 400px;
+    height: 400px;
 
     &-header-image {
-        background-image: url('https://scontent-waw1-1.xx.fbcdn.net/v/t39.30808-1/347384807_6394647897295892_6007875994994007536_n.jpg?stp=c93.0.320.320a_dst-jpg_p320x320&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=LmVcT3sKE2cAX_3gRhy&_nc_ht=scontent-waw1-1.xx&oh=00_AfC_qrUtenfmPsC0jVQMqbU-TpDOeFo2nGgIk2WfroIzkA&oe=6549526C');
-        background-size: cover;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        &-img {
+          width: 100%;
+          height: auto;
+        }
     }
 
     &-buttons {
@@ -32,7 +40,7 @@
     }
 
     &-icon {
-        transform: scale(2);
+        transform: scale(3);
     }
 
     &-image {
@@ -43,13 +51,15 @@
 .title {
     text-align: center;
     color: #fff;
+    z-index: 90;
+    position: relative;
 
     &-header-1 {
-    font-family: "Alex Brush";
-    font-size: 5rem;
-    line-height: 0.8;
-    margin: 40px 0 15px 0;
-    font-weight: 400;
+      font-family: "Alex Brush";
+      font-size: 5rem;
+      line-height: 0.8;
+      margin: 40px 0 15px 0;
+      font-weight: 400;
     }
 
     &-header-2 {
@@ -89,12 +99,15 @@
     }
 }
 
+.mat-mdc-card-title::first-letter {
+  text-transform:capitalize;
+}
 
   #coin {
     position: relative;
     margin: 0 auto;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     cursor: pointer;
   }
   #coin div {

@@ -7,7 +7,13 @@ import { DrawComponent } from './draw/draw.component';
 const routes: Routes = [
   { path: '', redirectTo: 'losowanie', pathMatch: 'full' },
   { path: 'losowanie', component: DrawComponent },
-  { path: 'losowanie/:key', component: DrawComponent }
+  { path: '92941', component: DrawComponent },
+  { path: '5fa58', component: DrawComponent },
+  { path: 'd0bc8', component: DrawComponent },
+  { path: '14e10', component: DrawComponent },
+  { path: 'ca1db', component: DrawComponent },
+  { path: '70333', component: DrawComponent },
+  { path: 'c109c', component: DrawComponent },
   // { path: '**', component: PageNotFoundComponent}
 ];
 
