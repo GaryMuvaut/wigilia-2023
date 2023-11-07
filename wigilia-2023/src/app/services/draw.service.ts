@@ -25,6 +25,10 @@ export class DrawService {
       .pipe(map(osoba => this.assignKey(osoba)));
   }
 
+  editPerson(key: string, person: Osoba): Promise<void> {
+    return this.db.object<Osoba>(`${this.API_URL}/${key}`).update(person);
+  }
+
   private assignKey(osoba: any) {
     return {...osoba.payload.val(), key: osoba.key};
   }
