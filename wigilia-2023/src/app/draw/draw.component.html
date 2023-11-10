@@ -6,16 +6,22 @@
                 <h2 class="title-header-2">Bożego Narodzenia</h2>
                 <h3 class="title-header-3">2023</h3>
             </div>
-            <ng-container *ngIf="this.person">
+            <ng-container *ngIf="this.person.key != ''">
                 <div class="main-content">
                     <mat-card class="draw-card">
                         <mat-card-header class="draw-card-header">
-                            <div mat-card-avatar class="draw-card-header-image mb-0">
-                                <img class="draw-card-header-image-img" src="./assets/images/{{this.person?.foto}}" alt="" />
+                            <div class="col-6 p-0 d-flex align-items-center gap-2">
+                                <div mat-card-avatar class="draw-card-header-image mb-0">
+                                    <img *ngIf="this.person?.foto" class="draw-card-header-image-img" src="./assets/images/{{this.person?.foto}}" alt="" />
+                                </div>
+                                <div>
+                                    <mat-card-title>{{ this.person?.key }}</mat-card-title>
+                                    <mat-card-subtitle>{{ this.person?.podpis }}</mat-card-subtitle>
+                                </div>
                             </div>
-                            <mat-card-title>{{ this.person?.key }}</mat-card-title>
-                            <mat-card-subtitle>{{ this.person?.podpis }}</mat-card-subtitle>
-                            <mat-icon>perm_identity</mat-icon>
+                            <div class="col-6 p-0 d-flex justify-content-end">
+                                <img class="draw-card-header-icon" src="./assets/images/christmas-gift-1.png" alt="" />
+                            </div>
                         </mat-card-header>
                         <div *ngIf="!isDrawn">                        
                             <mat-card-content>
@@ -28,7 +34,7 @@
                                 <p class="text-center">Kliknij w <strong>"?"</strong> lub w przycisk <strong>"LOSUJ"</strong> aby wylosować osobę, którą obdarujesz prezentem.</p>
                             </mat-card-content>
                         </div>
-                        <div *ngIf="isDrawn">                        
+                        <div *ngIf="isDrawn">
                             <mat-card-content>
                                 <p class="text-center mt-0">Wylosowana osoba to:</p>
                                 <div class="draw-card-buttons">

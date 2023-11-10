@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DrawService } from '../services/draw.service';
-import { Osoba } from '../models/draw.model';
+import { Osoba, WykluczonaOsoba } from '../models/draw.model';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 
@@ -14,7 +14,7 @@ export class DrawComponent implements OnInit {
   @ViewChild('coin') coin!: ElementRef;
   coinClass!: string;
   isDrawn: boolean = false;
-  persons!: Osoba[];
+  personArray!: Osoba[];
   person: Osoba = {
     foto: '',
     key: '',
@@ -23,8 +23,8 @@ export class DrawComponent implements OnInit {
     wylosowanaOsoba: ''
   };
   imie: string = '';
-  wykluczenia!: string[] | null;
-  personsToDraw: string[];
+  wykluczenia!: WykluczonaOsoba[] | null;
+  personToDrawArray: string[];
   randomNumber: number;
   personDrawn: Osoba = {
     foto: '',
@@ -39,36 +39,32 @@ export class DrawComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.setName(String(this.route.snapshot.url));  
-    this.personsToDraw = [];
+    this.personToDrawArray = [];
     this.randomNumber = 0;
   }
 
   ngOnInit(): void {
     this.drawService.getAllPersons().subscribe((osoby) => {
-      osoby.map(osoba => this.testMap(osoba)); 
-      this.persons = osoby;
+      this.personToDrawArray = [];
+      this.personArray = osoby;
+      this.person = this.personArray.find(x => x.key == this.imie) as Osoba;
+      this.wykluczenia = this.person?.wykluczenia;
 
-      this.drawService.getPerson(this.imie).subscribe(osoba => {
-        this.person = osoba;
-        this.wykluczenia = this.person?.wykluczenia ?? null;
-        
-        if (this.person.wylosowanaOsoba) {
-          this.isDrawn = true;
-          this.personDrawn = this.persons.find(x => x.key = this.person.wylosowanaOsoba) as Osoba;
-        }
-      });
+      osoby.map(osoba => this.setPersonToDrawArray(osoba)); 
 
+      console.log("Osoby do wylosowania: " + this.personToDrawArray);
+      console.log("Osoby wykluczone: " + JSON.stringify(this?.person?.wykluczenia));
+
+      if (this.person.wylosowanaOsoba) {
+        this.isDrawn = true;
+        this.personDrawn = this.personArray.find(x => x.key == this.person.wylosowanaOsoba) as Osoba;
+      }
     });    
   }
 
-  testMap(osoba: any) {
-    if (this?.person?.wykluczenia.find(x => x == osoba.key) || this.person?.key == osoba.key) {
-      console.log("Znaleziono: " + osoba.key);
-    }
-    else {
-      console.log("WWWWW: " + this.personsToDraw);
-      this.personsToDraw.push(osoba.key);
-    }
+  setPersonToDrawArray(osoba: any) {
+    if (!this?.person?.wykluczenia.find(x => x.osoba == osoba.key) && !(this.person?.key == osoba.key))
+      this.personToDrawArray.push(osoba.key);
   }
 
   draw() {
@@ -81,18 +77,15 @@ export class DrawComponent implements OnInit {
         this.coinClass = 'tails';
     }, 100);
 
-    this.randomNumber = Math.floor(Math.random() * this.personsToDraw.length);
-    console.log(this.randomNumber, this.personsToDraw[this.randomNumber], this.persons);
-    console.log(this.persons.find(x => x.key == this.personsToDraw[this.randomNumber]));
-
-    if (this.persons.find(x => x.key == this.personsToDraw[this.randomNumber])) {
-      this.personDrawn = this.persons.find(x => x.key == this.personsToDraw[this.randomNumber]) as Osoba;
-      this.person.wylosowanaOsoba = this.personDrawn.key;
-    }
-    
-    this.drawService.editPerson(this.person?.key, this.person);
-
     setTimeout(() => {
+      this.randomNumber = Math.floor(Math.random() * this.personToDrawArray.length);
+
+      if (this.personArray.find(x => x.key == this.personToDrawArray[this.randomNumber])) {
+        this.personDrawn = this.personArray.find(x => x.key == this.personToDrawArray[this.randomNumber]) as Osoba;
+        this.person.wylosowanaOsoba = this.personDrawn.key;
+      }
+    
+      this.drawService.editPerson(this.person?.key, this.person);
       this.isDrawn = true;
     }, 3100);
 
