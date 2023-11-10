@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { DrawComponent } from './draw/draw.component';
 // import { authGuard } from './core/services/auth.guard';
 // import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
@@ -18,7 +18,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, useHash:true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
