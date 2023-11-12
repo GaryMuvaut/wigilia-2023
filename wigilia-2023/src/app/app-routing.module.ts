@@ -12,7 +12,6 @@ const routes: Routes = [
   { path: 'd0bc8', component: DrawComponent },
   { path: '14e10', component: DrawComponent },
   { path: 'ca1db', component: DrawComponent },
-  { path: '70333', component: DrawComponent },
   { path: 'c109c', component: DrawComponent },
   // { path: '**', component: PageNotFoundComponent}
 ];

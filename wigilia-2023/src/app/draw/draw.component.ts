@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DrawService } from '../services/draw.service';
 import { Osoba, WykluczonaOsoba } from '../models/draw.model';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-draw',
@@ -22,8 +21,8 @@ export class DrawComponent implements OnInit {
     wykluczenia: [],
     wylosowanaOsoba: ''
   };
-  imie: string = '';
-  wykluczenia!: WykluczonaOsoba[] | null;
+  personName: string = '';
+  exclusions!: WykluczonaOsoba[] | null;
   personToDrawArray: string[];
   randomNumber: number;
   personDrawn: Osoba = {
@@ -47,8 +46,8 @@ export class DrawComponent implements OnInit {
     this.drawService.getAllPersons().subscribe((osoby) => {
       this.personToDrawArray = [];
       this.personArray = osoby;
-      this.person = this.personArray.find(x => x.key == this.imie) as Osoba;
-      this.wykluczenia = this.person?.wykluczenia;
+      this.person = this.personArray.find(x => x.key == this.personName) as Osoba;
+      this.exclusions = this.person?.wykluczenia;
 
       osoby.map(osoba => this.setPersonToDrawArray(osoba)); 
 
@@ -94,28 +93,25 @@ export class DrawComponent implements OnInit {
   setName(uri: string) {
     switch (uri) {
       case '92941':
-        this.imie = 'jagoda';
+        this.personName = 'jagoda';
         break;
       case '5fa58':
-        this.imie = 'jarosław';
+        this.personName = 'jarosław';
         break;
       case 'd0bc8':
-        this.imie = 'krystyna';
+        this.personName = 'krystyna';
         break;
       case '14e10':
-        this.imie = 'lidia';
+        this.personName = 'lidia';
         break;
       case 'ca1db':
-        this.imie = 'marcus';
-        break;
-      case '70333':
-        this.imie = 'zuzanna';
+        this.personName = 'marcus';
         break;
       case 'c109c':
-        this.imie = 'łukasz';
+        this.personName = 'łukasz';
         break;
       default:
-        this.imie = '';
+        this.personName = '';
         break;
     }
   }
