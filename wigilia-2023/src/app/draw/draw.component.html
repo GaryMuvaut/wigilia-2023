@@ -14,7 +14,7 @@
                 <div class="main-content">
                     <mat-card class="draw-card">
                         <mat-card-header class="draw-card-header">
-                            <div class="col-6 p-0 d-flex align-items-center gap-2">
+                            <div class="col-8 p-0 d-flex align-items-center gap-2">
                                 <div mat-card-avatar class="draw-card-header-image mb-0">
                                     <img *ngIf="this.person?.foto" class="draw-card-header-image-img" src="./assets/images/{{this.person?.foto}}" alt="" />
                                 </div>
@@ -23,7 +23,7 @@
                                     <mat-card-subtitle>{{ this.person?.podpis }}</mat-card-subtitle>
                                 </div>
                             </div>
-                            <div class="col-6 p-0 d-flex justify-content-end">
+                            <div class="col-4 p-0 d-flex justify-content-end">
                                 <img class="draw-card-header-icon" src="./assets/images/christmas-gift-1.png" alt="" />
                             </div>
                         </mat-card-header>
@@ -46,7 +46,7 @@
                                         <img class="draw-card-image" src="./assets/images/{{this.personDrawn.foto}}" alt="" />
                                     </div>
                                 </div>
-                                <h2 class="text-center">{{ this.personDrawn.podpis }}!</h2>
+                                <h2 class="text-center draw-card-drawn-person">{{ this.personDrawn.podpis }}!</h2>
                             </mat-card-content>
                         </div>
                     </mat-card>
