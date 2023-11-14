@@ -36,7 +36,19 @@ $wigilia-2023-theme: mat.define-light-theme((
 /* You can add global styles to this file, and also import other style files */
 
 html { height: 100%; font-size: 16px;}
-body { margin: 0; font-family: "Open Sans", "Helvetica Neue", sans-serif; background: #1c1e3f; /*#49a072*/}
+body {
+  margin: 0;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  background: #131323; /*#49a072*/
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+}
+
+app-root {flex: 0 0 100%;}
 
 .mat-mdc-outlined-button:not(:disabled) { border-color: #fff !important }
 .mat-mdc-outlined-button:not(:disabled) { color: #fff !important};

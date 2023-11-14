@@ -1,3 +1,5 @@
+$green: #2d9561;
+
 .main-content {
   display: flex;
   justify-content: center;
@@ -43,7 +45,7 @@
   &-button {
     width: 150px;
     height: 150px;
-    background-color: #f35b5b /*#e6374a*/;
+    background-color: $green/*#f35b5b*/ /*#e6374a*/;
 
     &--drawn {
       overflow: hidden;
@@ -60,7 +62,7 @@
   }
 
   &-drawn-person {
-    color: #f35b5b;
+    color: $green;
   }
 }
 
@@ -102,7 +104,7 @@
 
 .actions {
   display: flex;
-  justify-content: center;    
+  justify-content: center;
   margin-bottom: 30px;
   z-index: 90;
   position: relative;
@@ -112,7 +114,7 @@
     font-size: 1.1rem;
     letter-spacing: 2px;
     padding: 25px 30px;
-    background: #f35b5b;
+    background: $green;
     color: #fff;
     font-family: 'Open Sans', sans-serif;
     width: 400px;
@@ -304,9 +306,9 @@ h1.post-title {
 }
 
 .ribbon {
-  width: 50%;
+  width: 660px;
   position: relative;
-  background: #f35b5b;
+  background: $green;
   color: #fff;
   text-align: center;
   margin: 0 auto;
@@ -318,7 +320,7 @@ h1.post-title {
   position: absolute;
   display: block;
   bottom: -34px;
-  border: 46px solid #d74545;
+  border: 46px solid #377152;
   z-index: -1
 }
 
@@ -340,7 +342,7 @@ h1.post-title {
   position: absolute;
   display: block;
   border-style: solid;
-  border-color: #b23232 transparent transparent;
+  border-color: #29543d transparent transparent;
   bottom: -34px
 }
 
