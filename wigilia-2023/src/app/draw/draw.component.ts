@@ -43,27 +43,59 @@ export class DrawComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.drawService.getAllPersons().subscribe((osoby) => {
-      this.personToDrawArray = [];
-      this.personArray = osoby;
-      this.person = this.personArray.find(x => x.key == this.personName) as Osoba;
-      this.exclusions = this.person?.wykluczenia;
+    if (this.personName) {
+      this.drawService.getAllPersons().subscribe((osoby) => {
+        this.personToDrawArray = [];
+        this.personArray = osoby;
+        this.person = this.personArray.find(x => x.key == this.personName) as Osoba;
+        this.exclusions = this.person?.wykluczenia;
 
-      osoby.map(osoba => this.setPersonToDrawArray(osoba)); 
+        osoby.map(osoba => this.setPersonToDrawArray(osoba));
 
-      console.log("Osoby do wylosowania: " + this.personToDrawArray);
-      console.log("Osoby wykluczone: " + JSON.stringify(this?.person?.wykluczenia));
+        console.log("Osoby do wylosowania: " + this.personToDrawArray);
+        console.log("Osoby wykluczone: " + JSON.stringify(this?.person?.wykluczenia));
 
-      if (this.person.wylosowanaOsoba) {
-        this.isDrawn = true;
-        this.personDrawn = this.personArray.find(x => x.key == this.person.wylosowanaOsoba) as Osoba;
-      }
-    });    
+        this.removePersonFromArray();
+        console.log("Osoby do wylosowania po usunięciu: " + this.personToDrawArray);
+
+        if (this.personToDrawArray.length == 0)
+          this.exclusions.map(wykluczonaOsoba => this.personToDrawArray.push(wykluczonaOsoba.osoba));
+
+        console.log("Osoby ostatecznie do wylosowania: " + this.personToDrawArray);
+
+        if (this.person.wylosowanaOsoba) {
+          this.isDrawn = true;
+          this.personDrawn = this.personArray.find(x => x.key == this.person.wylosowanaOsoba) as Osoba;
+        }
+      });
+    }
   }
 
-  setPersonToDrawArray(osoba: any) {
+  setPersonToDrawArray(osoba: Osoba): void {
+    // console.log("osoba.key: " + osoba.key + ", this.person.key: " + this.person?.key +
+    //             ", this.person.wykluczenia: " + JSON.stringify(this?.person?.wykluczenia) +
+    //             ", osoba.wylosowanaOsoba: " + osoba.wylosowanaOsoba);
     if (!this?.person?.wykluczenia.find(x => x.osoba == osoba.key) && !(this.person?.key == osoba.key))
       this.personToDrawArray.push(osoba.key);
+    // else
+    //   console.log("nie dodano");
+  }
+
+  removePersonFromArray(): void {
+    // console.log("removePersonFromArray: " + this.personToDrawArray);
+    this.personArray.map(osoba => {
+      // console.log("osoba: " + osoba.key + " | " + osoba.wylosowanaOsoba);
+
+      let index = this.personToDrawArray.findIndex(x => x == osoba.wylosowanaOsoba);
+
+      if (index >= 0) {
+        // console.log("ZNALEZIONO: " + index + " | " + osoba.wylosowanaOsoba);
+        this.personToDrawArray.splice(index, 1);
+      }
+      else {
+        // console.log("NIE ZNALEZIONO: " + osoba.wylosowanaOsoba);
+      }
+    });
   }
 
   draw() {
