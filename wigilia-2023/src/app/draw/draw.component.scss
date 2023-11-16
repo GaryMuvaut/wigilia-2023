@@ -1,3 +1,5 @@
+@import "/node_modules/bootstrap/scss/mixins";
+
 $green: #2d9561;
 
 .main-content {
@@ -307,6 +309,7 @@ h1.post-title {
 
 .ribbon {
   width: 660px;
+  max-width: 80%;
   position: relative;
   background: $green;
   color: #fff;
@@ -354,4 +357,111 @@ h1.post-title {
 .ribbon .ribbon-inner:after {
   right: 0;
   border-width: 34px 34px 0 0
+}
+
+@media (max-width: 768px) {
+  .title-header-1 {
+    font-size: 4.5rem;
+    margin: 15px 0;
+  }
+  .title-header-2 {
+    font-size: 2.5rem;
+    height: 80px;
+  }
+  .title-header-3 {
+    font-size: 2rem;
+  }
+  .ribbon:after, .ribbon:before {
+    border-top-width: 36px;    
+    border-bottom-width: 36px;
+    bottom: -26px;
+  }
+  .ribbon:before {
+    left: -64px;
+    border-left-width: 36px;
+  }
+  .ribbon:after {
+    right: -64px;
+    border-left-width: 54px;
+    border-right-width: 36px;
+  }
+  .ribbon .ribbon-inner:before {
+    border-width: 26px 0 0 26px;
+  }
+  .ribbon .ribbon-inner:after {
+    border-width: 26px 26px 0 0;
+  }
+  .ribbon .ribbon-inner:after, .ribbon .ribbon-inner:before {
+    bottom: -26px;
+  }
+}
+
+@media (max-width: 576px) {
+  .row {
+    margin: 0;
+  }
+  .container {
+    padding: 0;
+  }
+  .title-header-1 {
+    font-size: 3.5rem;
+    margin: 5px 0;
+  }
+  .title-header-2 {
+    font-size: 1.8rem;
+    height: 60px;
+  }
+  .title-header-3 {
+    font-size: 1.5rem;
+  }
+  .ribbon-wrapper {
+    margin: 0 auto 5px auto;
+  }
+  .ribbon {
+    width: 300px;
+  }
+  .ribbon:after, .ribbon:before {
+    border-top-width: 28px;    
+    border-bottom-width: 28px;
+    bottom: -20px;
+  }
+  .ribbon:before {
+    left: -40px;
+    border-right-width: 32px;
+    border-left-width: 28px;
+  }
+  .ribbon:after {
+    right: -40px;
+    border-right-width: 28px;
+    border-left-width: 32px;
+  }
+  .ribbon .ribbon-inner:before {
+    border-width: 20px 0 0 20px;
+  }
+  .ribbon .ribbon-inner:after {
+    border-width: 20px 20px 0 0;
+  }
+  .ribbon .ribbon-inner:after, .ribbon .ribbon-inner:before {
+    bottom: -20px;
+  }
+  .draw-card {
+    width: 92%;
+    height: 310px;
+    max-width: 400px;
+  }
+  #coin {
+    width: 88px;
+    height: 88px;
+  }
+  .draw-card-button {
+    width: 88px;
+    height: 88px;
+  }
+  .draw-card-icon {
+    transform: scale(4);
+  }
+  .actions-button {
+    width: 92%;
+    max-width: 400px;
+  }
 }
